@@ -1,0 +1,11 @@
+[
+	{
+		"id": 2,
+		"title": "Producto2",
+		"description": "Descripcion2",
+		"price": "Precio2",
+		"image": "Imagen2",
+		"code": "Codigo2",
+		"stock": 2
+	}
+]
