@@ -59,11 +59,11 @@ class ProductManager {
 
     deleteProduct(id) {
         const product = JSON.parse(fs.readFileSync(filename, 'utf-8'))
-        product.find(p => p.id === id)
-        if (!product) {
+        const resultado = product.find(p => p.id == +id)
+        if (!resultado) {
             return console.log('Error: El producto no existe')
         }
-        const newproduct = product.filter(p => p.id !== id)
+        const newproduct = product.filter(p => p.id !== +id)
         fs.writeFileSync(filename, JSON.stringify(newproduct, null, '\t'))
     }
 }

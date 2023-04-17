@@ -49,6 +49,17 @@ app.get('/id', (request, response) => {
     })
 })
 
+app.delete('/product/:id', (request, response) => {
+    const productManager = new ProductManager()
+    const id = request.params.id
+    const data = productManager.deleteProduct(id)
+
+    response.send({
+        message: "Metodo DELETE OK",
+        data: data
+    })
+})
+
 app.listen(8080, () => {
     console.log("Servidor corriendo en http://localhost:8080");
 })
