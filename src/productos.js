@@ -33,21 +33,20 @@ class ProductManager {
     }
 
     getProducts() {
-
         // return this.#products
-
         const contenido = JSON.parse(fs.readFileSync(filename, 'utf-8'))
-        //console.log(" Muestro el contenido del archivo Productos", contenido)
+
+        return contenido
     }
 
     getProductsById(id) {
 
         const contenido = JSON.parse(fs.readFileSync(filename, 'utf-8'))
 
-        console.log("Muestro el contenido del ID elegido", contenido.find(p => p.id === id))
-
+        return contenido.find(p => p.id == id)
     }
-    updateProduct(id, title, description, price, image, code, stock) {
+
+    updateProduct(id, title = '', description, price, image, code, stock) {
         const product = this.products.find((product) => product.id === id)
         if (!product) {
             return console.log('Error: El producto no existe')
@@ -68,10 +67,11 @@ class ProductManager {
         fs.writeFileSync(filename, JSON.stringify(newproduct, null, '\t'))
     }
 }
+
 // exporto la clase ProductManager para poder ser usada en el archivo index.js. Esto resuelve el error TypeError: ProductManager is not a constructor
 module.exports = ProductManager
 
-// const product = new ProductManager()
+
 // product.addProduct("Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 1)
 // // product.addProduct("Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 1)
 // product.addProduct("Producto2", "Descripcion2", "Precio2", "Imagen2", "Codigo2", 2)
@@ -84,7 +84,7 @@ module.exports = ProductManager
 // product.addProduct("Producto9", "Descripcion9", "Precio9", "Imagen9", "Codigo9", 9)
 // product.addProduct("Producto10", "Descripcion10", "Precio10", "Imagen10", "Codigo10", 10)
 
-
+// const product = new ProductManager()
 // product.getProducts()
 // product.getProductsById(1)
 // product.updateProduct(1, "Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 2)
