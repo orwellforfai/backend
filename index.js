@@ -2,6 +2,9 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.json());
+
+
 const ProductManager = require('./src/productos.js');
 
 app.get('/', (request, response) => {
@@ -62,10 +65,39 @@ app.delete('/product/:id', (request, response) => {
 
 app.post('/product', (request, response) => {
     const productManager = new ProductManager()
-    const data = productManager.addProduct("Producto 6", "Descripcion 6", 600, "imagen 6", 6, 60)
+    const data = productManager.addProduct("Producto 5", "Descripcion 5", 5, "imagen5", "Codigo5", 5)
 
     response.send({
         message: "Metodo POST OK",
+        data: data,
+        status: 201
+    })
+})
+
+app.post('/newproduct', (request, response) => {
+    const productManager = new ProductManager()
+    const body = request.body
+    console.log("Body", body)
+    const data = productManager.addProduct(body.title, body.description, body.price, body.image, body.code, body.stock)
+
+    response.send({
+        message: "Metodo POST con Body en JSON OK",
+        data: data,
+        status: 201
+    })
+
+})
+
+app.put('/product/:id', (request, response) => {
+    const productManager = new ProductManager()
+    const id = request.params.id
+    console.log(id)
+    const body = request.body
+    console.log("Body", body)
+    const data = productManager.updateProduct(id, body.title, body.description, body.price, body.image, body.code, body.stock)
+
+    response.send({
+        message: "Metodo PUT OK",
         data: data,
         status: 201
     })

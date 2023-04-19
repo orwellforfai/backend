@@ -16,10 +16,10 @@ class ProductManager {
     }
 
 
-
     addProduct(title, description, price, image, code, stock) {
+        const lista = this.getProducts()
         const id = this.generateID()
-        console.log("muestro ID",id)
+        console.log("muestro ID", id)
         const product = {id, title, description, price, image, code, stock}
 
         // Valido que el producto tenga todos los campos
@@ -28,13 +28,13 @@ class ProductManager {
         }
 
         //Valido que el producto ingresado no exista
-        const productExists = this.products.some((product) => product.code === code)
+        const productExists = lista.some((product) => product.code === code)
         console.log("producto existe ?", productExists)
         if (productExists) {
             return console.log('Error: El producto ya existe')
         } else {
-            this.products.push(product)
-            fs.writeFileSync(filename, JSON.stringify(this.products, null, '\t'))
+            lista.push(product)
+            fs.writeFileSync(filename, JSON.stringify(lista, null, '\t'))
         }
     }
 
@@ -52,8 +52,8 @@ class ProductManager {
         return contenido.find(p => p.id == id)
     }
 
-    updateProduct(id, title = '', description, price, image, code, stock) {
-        const product = this.products.find((product) => product.id === id)
+    updateProduct(id, title, description, price, image, code, stock) {
+        const product = this.products.find((product) => product.id == id)
         if (!product) {
             return console.log('Error: El producto no existe')
         }
