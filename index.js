@@ -60,6 +60,17 @@ app.delete('/product/:id', (request, response) => {
     })
 })
 
+app.post('/product', (request, response) => {
+    const productManager = new ProductManager()
+    const data = productManager.addProduct("Producto 6", "Descripcion 6", 600, "imagen 6", 6, 60)
+
+    response.send({
+        message: "Metodo POST OK",
+        data: data,
+        status: 201
+    })
+})
+
 app.listen(8080, () => {
     console.log("Servidor corriendo en http://localhost:8080");
 })

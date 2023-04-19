@@ -36,6 +36,15 @@
 		"stock": 4
 	},
 	{
+		"id": 5,
+		"title": "Producto5",
+		"description": "Descripcion5",
+		"price": "Precio5",
+		"image": "Imagen5",
+		"code": "Codigo5",
+		"stock": 5
+	},
+	{
 		"id": 6,
 		"title": "Producto6",
 		"description": "Descripcion6",
