@@ -53,7 +53,8 @@ class ProductManager {
     }
 
     updateProduct(id, title, description, price, image, code, stock) {
-        const product = this.products.find((product) => product.id == id)
+        //const product = this.products.find((product) => product.id == id)
+        const product = this.products.findIndex((product) => product.id == id)
         if (!product) {
             return console.log('Error: El producto no existe')
         }

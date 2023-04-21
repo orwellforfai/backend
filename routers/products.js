@@ -1,22 +1,16 @@
-const express = require('express'); // Common JS
+import {Router}  from "express";
 
-//import express from 'express'; // ES Modules
-
-const app = express();
-
-app.use(express.json());
+const router = Router();
 
 
-const ProductManager = require('./src/productos.js');
-
-app.get('/', (request, response) => {
+router.get('/', (request, response) => {
     response.send('<h1 style="color:goldenrod">Bienvenidos a la pagina de productos!!</h1>');
 })
 
 // Uso de limit a la hora de mostrar los productos, si no se escibe el limite se muestran todos.
 // lo llamo asi: http://localhost:8080/products?limit=5
 // o asi http://localhost:8080/products para obtener todos.
-app.get('/products', (request, response) => {
+router.get('/products', (request, response) => {
     const productManager = new ProductManager()
     const productos = productManager.getProducts()
     const limit = request.query.limit
@@ -31,7 +25,7 @@ app.get('/products', (request, response) => {
 })
 
 // por url param http://localhost:8080/product/5
-app.get('/product/:id', (request, response) => {
+router.get('/product/:id', (request, response) => {
     const productManager = new ProductManager()
     const id = request.params.id
     const data = productManager.getProductsById(id)
@@ -43,7 +37,7 @@ app.get('/product/:id', (request, response) => {
 })
 
 // por query param: http://localhost:8080/id?id=5
-app.get('/id', (request, response) => {
+router.get('/id', (request, response) => {
     const productManager = new ProductManager()
     const id = request.query.id
     const data = productManager.getProductsById(id)
@@ -54,7 +48,7 @@ app.get('/id', (request, response) => {
     })
 })
 
-app.delete('/product/:id', (request, response) => {
+router.delete('/product/:id', (request, response) => {
     const productManager = new ProductManager()
     const id = request.params.id
     const data = productManager.deleteProduct(id)
@@ -65,7 +59,7 @@ app.delete('/product/:id', (request, response) => {
     })
 })
 
-app.post('/product', (request, response) => {
+router.post('/product', (request, response) => {
     const productManager = new ProductManager()
     const data = productManager.addProduct("Producto 5", "Descripcion 5", 5, "imagen5", "Codigo5", 5)
 
@@ -76,7 +70,7 @@ app.post('/product', (request, response) => {
     })
 })
 
-app.post('/newproduct', (request, response) => {
+router.post('/newproduct', (request, response) => {
     const productManager = new ProductManager()
     const body = request.body
     console.log("Body", body)
@@ -90,7 +84,7 @@ app.post('/newproduct', (request, response) => {
 
 })
 
-app.put('/product/:id', (request, response) => {
+router.put('/product/:id', (request, response) => {
     const productManager = new ProductManager()
     const id = request.params.id
     console.log("id a modificar",id)
@@ -105,6 +99,6 @@ app.put('/product/:id', (request, response) => {
     })
 })
 
-app.listen(8080, () => {
-    console.log("Servidor corriendo en http://localhost:8080");
-})
+
+
+    export default router;
