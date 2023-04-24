@@ -55,12 +55,14 @@ class ProductManager {
 
     updateProduct(id, title, description, price, image, code, stock) {
         //const product = this.products.find((product) => product.id == id)
-        const product = this.products.find((product) => product.id == id)
+        const list = this.getProducts()
+        const product = list.findIndex((p) => p.id == id)
         if (!product) {
             return console.log('Error: El producto no existe')
         }
 
         const newProduct = {id, title, description, price, image, code, stock}
+        console.log(newProduct)
         this.products = this.products.map((product) => product.id === id ? newProduct : product)
         fs.writeFileSync(filename, JSON.stringify(this.products, null, '\t'))
     }
