@@ -1,5 +1,5 @@
 import {Router}  from "express";
-
+import ProductManager from "../controller/productos.js";
 const router = Router();
 
 
@@ -9,7 +9,7 @@ router.get('/', (request, response) => {
 
 // Uso de limit a la hora de mostrar los productos, si no se escibe el limite se muestran todos.
 // lo llamo asi: http://localhost:8080/products?limit=5
-// o asi http://localhost:8080/products para obtener todos.
+// o asi http://localhost:8080/api/productos/products para obtener todos.
 router.get('/products', (request, response) => {
     const productManager = new ProductManager()
     const productos = productManager.getProducts()
@@ -24,8 +24,8 @@ router.get('/products', (request, response) => {
     })
 })
 
-// por url param http://localhost:8080/product/5
-router.get('/product/:id', (request, response) => {
+// por url param http://localhost:8080/api/productos/products/5
+router.get('/products/:id', (request, response) => {
     const productManager = new ProductManager()
     const id = request.params.id
     const data = productManager.getProductsById(id)

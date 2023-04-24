@@ -1,5 +1,6 @@
-const fs = require('fs')
-const filename = './productos.json'
+import fs from 'fs'
+
+const filename = './src/storage/productos.json'
 
 class ProductManager {
 //    products
@@ -75,24 +76,5 @@ class ProductManager {
     }
 }
 
-// exporto la clase ProductManager para poder ser usada en el archivo index.js. Esto resuelve el error TypeError: ProductManager is not a constructor
-module.exports = ProductManager
+export default ProductManager
 
-
-// product.addProduct("Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 1)
-// // product.addProduct("Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 1)
-// product.addProduct("Producto2", "Descripcion2", "Precio2", "Imagen2", "Codigo2", 2)
-// product.addProduct("Producto3", "Descripcion3", "Precio3", "Imagen3", "Codigo3", 3)
-// product.addProduct("Producto4", "Descripcion4", "Precio4", "Imagen4", "Codigo4", 4)
-// product.addProduct("Producto5", "Descripcion5", "Precio5", "Imagen5", "Codigo5", 5)
-// product.addProduct("Producto6", "Descripcion6", "Precio6", "Imagen6", "Codigo6", 6)
-// product.addProduct("Producto7", "Descripcion7", "Precio7", "Imagen7", "Codigo7", 7)
-// product.addProduct("Producto8", "Descripcion8", "Precio8", "Imagen8", "Codigo8", 8)
-// product.addProduct("Producto9", "Descripcion9", "Precio9", "Imagen9", "Codigo9", 9)
-// product.addProduct("Producto10", "Descripcion10", "Precio10", "Imagen10", "Codigo10", 10)
-
-// const product = new ProductManager()
-// product.getProducts()
-// product.getProductsById(1)
-// product.updateProduct(1, "Producto1", "Descripcion1", "Precio1", "Imagen1", "Codigo1", 2)
-// product.deleteProduct(1)
