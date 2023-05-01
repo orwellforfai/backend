@@ -63,8 +63,11 @@ class ProductManager {
 
         const newProduct = {id, title, description, price, image, code, stock}
         console.log(newProduct)
-        this.products = this.products.map((product) => product.id === id ? newProduct : product)
-        fs.writeFileSync(filename, JSON.stringify(this.products, null, '\t'))
+        //const contenido = json.parse(fs.readFileSync(filename, 'utf-8'))
+        fs.writeFileSync(filename, JSON.stringify(list.map((product) => product.id == id ? newProduct : product), null, '\t'))
+        //fs.writeFileSync(filename, JSON.stringify(contenido.map((product) => product.id == id ? newProduct : product), null, '\t'))
+       //this.products = this.products.map((product) => product.id === id ? newProduct : product)
+        //fs.writeFileSync(filename, JSON.stringify(this.products, null, '\t'))
     }
 
     deleteProduct(id) {

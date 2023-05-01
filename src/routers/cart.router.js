@@ -5,7 +5,8 @@ let cart = []
 const router = Router();
 
 router.get('/', (request, response) => {
-    response.send({ cart });
+    response.render('cart',{producto: cart})
+    //response.send({ cart });
 })
 
 router.post('/', (request, response) => {
